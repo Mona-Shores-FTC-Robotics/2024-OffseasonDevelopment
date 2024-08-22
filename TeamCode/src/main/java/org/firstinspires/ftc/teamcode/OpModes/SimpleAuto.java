@@ -1,15 +1,16 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
-@Autonomous(name="Simple Auto", group = "Offseason")
+@Config
+@Autonomous(name = "SimpleAuto", group = "Autonomous")
 public class SimpleAuto extends LinearOpMode {
     @Override
     public void runOpMode() {
@@ -18,7 +19,15 @@ public class SimpleAuto extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(drive.actionBuilder(beginPose)
-                .splineTo(new Vector2d(30, 30), Math.PI / 2)
+          //      .splineTo(new Vector2d(30, 30), Math.PI / 2)
+          //      .splineTo(new Vector2d(-30, -30), Math.PI / 2)
+                        .lineToX(30)
+                        .turnTo(Math.toRadians(90))
+                        .lineToY(30)
+                        .turnTo(Math.toRadians(180))
+                        .lineToX(0)
+                        .lineToY(0)
                 .build());
+
     }
 }
